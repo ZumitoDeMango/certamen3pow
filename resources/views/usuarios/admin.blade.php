@@ -1,19 +1,4 @@
-@php
-    $route = 'templates/unlogged'
-@endphp
-@if (Auth::check()) 
-    @if (Auth::user()->tipo_rol == 2)
-        @php
-        $route = 'templates/admin'
-        @endphp
-    @else
-        @php
-        $route = 'templates/user'
-        @endphp
-    @endif
-@endif
-
-@extends($route)
+@extends('templates.master')
 
 @section('contenido-principal')
     <div class="container">
@@ -53,9 +38,6 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="col">
-                    <h3>Gestion de vehiculos</h3>
                 </div>
             </div>
         </div>

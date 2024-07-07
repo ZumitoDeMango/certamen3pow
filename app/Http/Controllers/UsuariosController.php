@@ -11,57 +11,71 @@ use App\Http\Requests\UsuariosRequest;
 
 class UsuariosController extends Controller
 {
-    public function login(){
+    // Muestra la vista de administración de usuarios
+    public function admin()
+    {
+        $usuarios = User::all();
+        return view('usuarios.admin', compact('usuarios'));
+    }
+
+    // Muestra la vista de inicio de sesión
+    public function login()
+    {
         return view('usuarios.login');
     }
-    public function register(){
-        return view('usuarios.register');
-    }
 
-    function loginUser(Request $request){
+    // Maneja la autenticación de usuarios
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
 
-        $credentials = [
-            'name' => $request->email,
-            'password' => $request->password
-        ];
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if (Auth::user()->tipo_rol == '2') {
-                return redirect()->route('home.index');
-            }
+            return redirect()->intended('/admin');
         }
 
         return back()->withErrors([
-            'errors' => 'Errores con las credenciales de acceso',
+            'email' => 'Las credenciales no coinciden con nuestros registros.',
         ]);
     }
 
-    function registerUser(Request $request){
-        
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->tipo_rol = $request->tipo_rol;
-        $user->password = Hash::make($request->password);
-        $user->save();
-        
-        return redirect()->route('usuarios.login');
+    // Muestra la vista de registro
+    public function register()
+    {
+        return view('usuarios.register');
     }
 
-    function logout(){
-        Auth::logout();
+    // Maneja el registro de nuevos usuarios
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->save();
+
+        Auth::login($user);
+
         return redirect()->route('home.index');
     }
 
-    function selfedit(Request $request){
-        $user = User::where('id', $request->id)->first();
-        if (Auth::user()->id || $user-> id != null){
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->save();
-        }
-        return redirect()->route('usuarios');
-    }
+    // Maneja el cierre de sesión de usuarios
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('usuarios.login');
+    }
 }

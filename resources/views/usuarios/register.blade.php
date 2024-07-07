@@ -1,53 +1,54 @@
-@extends('templates/unlogged')
-
-@section('titulo')
-    <title>Register</title>
-@endsection
+@extends('templates.master')
 
 @section('contenido-principal')
 
-<div class="d-flex justify-content-center">
-    <div class="col-12 col-md-9 col-lg-6">
-        <div class="container">
-            <form action="{{route('usuarios.registerUser')}}" method="POST">
-                @csrf
-                <div class="mb-3 text-center">
-                    <h3>Register</h3>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Registro de Usuario</div>
+                <div class="card-body">
+                    <form action="{{ route('usuarios.store') }}" method="POST">
+                        @csrf
+                        <!-- Campos del formulario -->
+                        <div class="form-group mb-3">
+                            <label for="name">Nombre:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="tipo_rol">Rol de la Cuenta</label>
+                            <select id="tipo_rol" name="tipo_rol" class="form-control">
+                                <option value="0">Seleccione</option>
+                                @foreach($tipo_rol as $tipo_rol)
+                                <option value="{{$tipo_rol->id}}" @if(old('rol')==$tipo_rol->id) selected @endif>{{ $tipo_rol->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password">Contraseña:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password-confirm">Confirmar Contraseña:</label>
+                            <input type="password" class="form-control" id="password-confirm" name="password_confirmation" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Registrarse</button>
+                    </form>
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-3">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Ingrese un nombre de usuario</label>
-                    <input type="name" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}">
-                    @error('name')
-                    <div id="nameFeedback" class="invalid-feedback">
-                        {{$message}}
-                    </div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Ingrese su correo</label>
-                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
-                    @error('email')
-                    <div id="emailFeedback" class="invalid-feedback">
-                        {{$message}}
-                    </div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Ingrese el rol del usuario</label>
-                    <input type="tipo_rol" name="tipo_rol" id="tipo_rol" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Ingrese su contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Confirme su contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control">
-                </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit">Registrar</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

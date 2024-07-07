@@ -1,37 +1,37 @@
-@extends('templates/unlogged')
-
-@section('titulo')
-    <title>Login</title>
-@endsection
+@extends('templates.master')
 
 @section('contenido-principal')
 
-<div class="d-flex justify-content-center">
-    <div class="col-12 col-md-9 col-lg-6">
-        <div class="container">
-            <form action="{{route('usuarios.loginUser')}}" method="POST">
-                @csrf
-                <div class="mb-3 text-center">
-                    <h3>Login</h3>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Iniciar Sesión</div>
+                <div class="card-body">
+                    <form action="{{ route('usuarios.authenticate') }}" method="POST">
+                        @csrf
+                        <!-- Campos del formulario -->
+                        <div class="form-group mb-3">
+                            <label for="email">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password">Contraseña:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    </form>
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-3">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Ingrese su usuario</label>
-                    <input type="name" name="email" id="email" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Ingrese su contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control">
-                </div>
-                <div>
-                    <a href="/register">No tienes cuenta? registrate aqui</a>
-                </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit">Ingresar</button>
-                </div>
-                @error('errors')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </form>
+            </div>
         </div>
     </div>
 </div>
