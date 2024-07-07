@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\CatalogoController;
+use App\Http\Controllers\ClientesController;
 
 //middlewares
 use App\Http\Middleware\Middleware;
@@ -34,3 +35,6 @@ Route::post('/catalogo/admin/marca/{id}/delete', [CatalogoController::class, 'de
 /* rutas para mostrar el modal de arrendar */
 Route::get('/catalogo/arrendar/{id}', [CatalogoController::class, 'mostrarArrendar'])->name('catalogo.arrendar');
 Route::post('/catalogo/arrendar/{id}', [CatalogoController::class, 'storeArrendar'])->name('catalogo.storeArrendar'); 
+
+/* rutas de clientes */
+Route::resource('/clientes', ClientesController::class);
