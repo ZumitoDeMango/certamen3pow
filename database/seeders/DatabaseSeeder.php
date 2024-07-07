@@ -45,15 +45,15 @@ class DatabaseSeeder extends Seeder
         // 2 Mahindra
         // 3 Chevrolet
         marca::create([
-            'nombre'=>'Toyota',
+            'nombre_marca'=>'Toyota',
             'deleted_at'=>NULL,
         ]);
         marca::create([
-            'nombre'=>'Mahindra',
+            'nombre_marca'=>'Mahindra',
             'deleted_at'=>NULL,
         ]);
         marca::create([
-            'nombre'=>'Chevrolet',
+            'nombre_marca'=>'Chevrolet',
             'deleted_at'=>NULL,
         ]);
 

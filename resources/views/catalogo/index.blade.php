@@ -23,19 +23,20 @@
                 </thead>
                 <tbody>
                     <!-- Ejemplo de fila -->
-                    @foreach($autos as $auto)
+                    @foreach($autos as $num=>$auto)
                     <tr>
-                        <td>{{$auto->id}}</td>
+                        <td>{{$num+1}}</td>
+                        <td>{{$auto->tipoauto->tipo_auto}}</td> {{--a saber porque no lo pesca {{$auto->tipo_auto->tipo_auto}}--}}
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        {{-- <td>{{$auto->marca}}</td> --}}
+                        <td>{{$auto->color}}</td>
+                        <td>{{$auto->placa}}</td>
+                        <td>{{$auto->anio}}</td>
                         <td></td>
                         <td></td>
                         <td>
-                            <a href="#" class="btn btn-info btn-sm">Editar</a>
-                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="#" class="btn btn-info btn-sm">Arrendar</a>
+                            
                         </td>
                     </tr>
                     @endforeach

@@ -14,7 +14,7 @@ class marca extends Model
 
     public function auto() : HasMany
     {
-        return $this->hasMany(auto::class);
+        return $this->hasMany('App\Models\auto');
     }
 
 }

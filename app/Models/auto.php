@@ -15,16 +15,18 @@ class auto extends Model
     public $timestamps = false;
 
 
-    public function arriendo(): HasMany
+    public function arriendo()
     {
         return $this->hasMany(arriendoauto::class);
     }
-    public function marca(): BelongsTo
+
+    public function tipoauto()
     {
-        return $this->BelongsTo(marca::class);
+        return $this->belongsTo(tipoauto::class,'tipo_auto','id');
     }
-    public function tipoauto(): BelongsTo
+
+    public function marca()
     {
-        return $this->BelongsTo(tipoauto::class);
+        return $this->belongsTo(marca::class,'marca');
     }
 }

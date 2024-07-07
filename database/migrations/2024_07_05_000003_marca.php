@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('marca', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre_marca');
             $table->softDeletes();
         });
     }

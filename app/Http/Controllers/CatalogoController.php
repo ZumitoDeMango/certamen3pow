@@ -6,17 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\auto;
 use App\Models\marca;
 use App\Models\tipoauto;
-use Carbon\Carbon;
 
 class CatalogoController extends Controller
 {
     // Muestra la vista del catálogo de autos para los usuarios
     public function index()
     {
-        $autos = Auto::where('estado', 'disponible')->get();
-        $marcas = Marca::whereNull('deleted_at')->get();
-        $tipos_auto = TipoAuto::all();
-        return view('catalogo.index', compact(['autos','marcas','tipos_auto']));
+        $autos = Auto::where('estado', 'disponible')->with('tipoauto','marca')->get();
+        return view('catalogo.index', compact('autos'));
     }
 
     // Muestra la vista de administración del catálogo de autos
