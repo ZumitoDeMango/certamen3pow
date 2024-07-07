@@ -15,7 +15,7 @@ class CatalogoController extends Controller
     // Muestra la vista del catálogo de autos para los usuarios
     public function index()
     {
-        $autos = Auto::where('estado', 'disponible')->with('tipoauto','marca')->get();
+        $autos = Auto::where('estado', 0)->with('tipoauto','marca')->get();
         return view('catalogo.index', compact('autos'));
     }
 
