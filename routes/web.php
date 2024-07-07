@@ -29,11 +29,11 @@ Route::post('/registerUser',[UsuariosController::class,'registerUser'])->name('u
 Route::get('/ejecutivo',[EjecutivoController::class,'index'])->name('ejecutivo.index')->middleware(Middleware::class);
 
 
-/* rutas de catalog */
+/* rutas de catalogo */
 
-Route::get('/catalog',[CatalogoController::class,'index'])->name('catalog.index')->middleware(Middleware::class);
-Route::get('/catalog/show',[CatalogoController::class,'show'])->name('catalog.show')->middleware(Middleware::class);
-Route::post('/catalog/storebuy',[CatalogoController::class,'storebuy'])->name('catalog.store')->middleware(Middleware::class);
+Route::get('/catalogo',[CatalogoController::class,'index'])->name('catalogo.index')->middleware(Middleware::class);
+Route::get('/catalogo/show',[CatalogoController::class,'show'])->name('catalogo.show')->middleware(Middleware::class);
+Route::post('/catalogo/storebuy',[CatalogoController::class,'storebuy'])->name('catalogo.store')->middleware(Middleware::class);
 
 
 /* rutas de admin */

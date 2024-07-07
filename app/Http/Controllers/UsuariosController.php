@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Http\Requests\UsuariosRequest;
+
 
 class UsuariosController extends Controller
 {
@@ -25,10 +27,8 @@ class UsuariosController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if (Auth::user()->rol == '1') {
-                return redirect()->route('admin.home');
-            }else{
-                return redirect()->route('ejecutivo.index');
+            if (Auth::user()->tipo_rol == '2') {
+                return redirect()->route('home.index');
             }
         }
 
@@ -38,13 +38,14 @@ class UsuariosController extends Controller
     }
 
     function registerUser(Request $request){
+        
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->rol = 1;
+        $user->tipo_rol = $request->tipo_rol;
         $user->password = Hash::make($request->password);
         $user->save();
-
+        
         return redirect()->route('usuarios.login');
     }
 

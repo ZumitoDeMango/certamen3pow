@@ -15,7 +15,7 @@
                     <h3>Login</h3>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Ingrese su correo</label>
+                    <label for="" class="form-label">Ingrese su usuario</label>
                     <input type="name" name="email" id="email" class="form-control">
                 </div>
                 <div class="mb-3">

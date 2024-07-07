@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // tipo de usuarios
+        // 1 = Ejecutivo
+        // 2 = admin
+        // 3 = cliente
         tiporol::create(['tipo' => 'ejecutivo']);
         tiporol::create(['tipo' => 'admin']);
         tiporol::create(['tipo' => 'cliente']);

@@ -12,12 +12,12 @@ class CatalogoController extends Controller
 {
     public function index(){
         $autos = auto::all();
-        return view('catalog.index', compact('autos'));
+        return view('catalogo.index', compact('autos'));
     }
 
     public function show(){
         $arriendoauto = arriendoauto::all();
-        return view('catalog.index',compact('arriendoauto'));
+        return view('catalogo.index',compact('arriendoauto'));
     }
 
     public function storeBuy(Request $request){
@@ -30,7 +30,7 @@ class CatalogoController extends Controller
         $arriendoauto->fecha_entrega = $request->fecha_entrega;
         $arriendoauto->fecha_devolucion = null;
         $arriendoauto->save();
-        return redirect()->route('catalog.index');
+        return redirect()->route('catalogo.index');
     }
 
 }
