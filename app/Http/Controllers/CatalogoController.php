@@ -103,6 +103,7 @@ class CatalogoController extends Controller
         ]);
 
         $cliente = cliente::where('rut', $request->rut_cliente)->firstOrFail();
+        $auto= auto::findOrFail($id);
 
         $fechaInicio = Carbon::parse($request->fecha_inicio);
         $fechaEntrega = $fechaInicio->copy()->addHour();
@@ -114,6 +115,10 @@ class CatalogoController extends Controller
         $arriendo->fecha_fin = $request->fecha_fin;
         $arriendo->fecha_entrega = $fechaEntrega;
         $arriendo->save();
+
+        $auto->estado=true;
+        $auto->save();
+
         return redirect()->route('catalogo.index')->with('success', 'El vehículo ha sido arrendado exitosamente.');
     }
 }
