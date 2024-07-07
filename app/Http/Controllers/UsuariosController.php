@@ -11,6 +11,35 @@ use App\Http\Requests\UsuariosRequest;
 
 class UsuariosController extends Controller
 {
+    // Método para mostrar el formulario de cambio de contraseña
+    public function config()
+    {
+        return view('usuarios.config');
+    }
+
+    // Método para actualizar la contraseña del usuario
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|different:current_password',
+            'new_password_confirmation' => 'required|same:new_password',
+        ]);
+
+        $user = Auth::user();
+
+        // Verificar que la contraseña actual sea correcta
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'La contraseña actual no es válida.'])->withInput();
+        }
+
+        // Actualizar la contraseña del usuario
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('home.index')->with('success', 'Contraseña actualizada correctamente.');
+    }
+
     // Muestra la vista de administración de usuarios
     public function admin()
     {

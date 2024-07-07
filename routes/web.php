@@ -21,6 +21,8 @@ Route::post('/login', [UsuariosController::class, 'authenticate'])->name('usuari
 Route::get('/register', [UsuariosController::class, 'register'])->name('usuarios.register')->middleware('guest');
 Route::post('/register', [UsuariosController::class, 'store'])->name('usuarios.store');
 Route::post('/logout', [UsuariosController::class, 'logout'])->name('usuarios.logout')->middleware('auth');
+Route::get('/config', [UsuariosController::class, 'config'])->name('usuarios.config');
+Route::put('/config/update-password', [UsuariosController::class, 'updatePassword'])->name('usuarios.updatePassword');
 
 /* rutas de catalogo */
 Route::get('/catalogo', [CatalogoController::class, 'index'])->name('catalogo.index');

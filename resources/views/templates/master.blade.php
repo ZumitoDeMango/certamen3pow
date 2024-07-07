@@ -53,7 +53,7 @@
                     @else
                     <!-- Boton de logout -->
                     <li class="nav-item">
-                        <a class="nav-link" href="">Config</a>
+                        <a class="nav-link" href="{{ route('usuarios.config') }}">Config</a>
                     </li>
                     <li class="nav-item">
                         <form action="{{ route('usuarios.logout') }}" method="POST">
