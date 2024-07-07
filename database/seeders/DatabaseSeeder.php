@@ -8,6 +8,7 @@ use App\Models\marca;
 use App\Models\tipoauto;
 use App\Models\auto;
 use App\Models\arriendoautos;
+use App\Models\cliente;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -44,6 +45,7 @@ class DatabaseSeeder extends Seeder
         // 1 Toyota
         // 2 Mahindra
         // 3 Chevrolet
+        // 4 Yamaha
         marca::create([
             'nombre_marca'=>'Toyota',
             'deleted_at'=>NULL,
@@ -54,6 +56,10 @@ class DatabaseSeeder extends Seeder
         ]);
         marca::create([
             'nombre_marca'=>'Chevrolet',
+            'deleted_at'=>NULL,
+        ]);
+        marca::create([
+            'nombre_marca'=>'Yamaha',
             'deleted_at'=>NULL,
         ]);
 
@@ -84,6 +90,7 @@ class DatabaseSeeder extends Seeder
         auto::create([
             'tipo_auto'=>3,
             'marca'=>1,
+            'nombre_auto'=>'Corolla',
             'color'=>'Gris',
             'placa'=>'ABCD11',
             'anio'=>'2011',
@@ -91,7 +98,8 @@ class DatabaseSeeder extends Seeder
         ]);
         auto::create([
             'tipo_auto'=>1,
-            'marca'=>1,
+            'marca'=>4,
+            'nombre_auto'=>'Fazer',
             'color'=>'Amarillo',
             'placa'=>'CDXC03',
             'anio'=>'2016',
@@ -100,6 +108,7 @@ class DatabaseSeeder extends Seeder
         auto::create([
             'tipo_auto'=>2,
             'marca'=>3,
+            'nombre_auto'=>'Blazer',
             'color'=>'Blanco',
             'placa'=>'UHJK99',
             'anio'=>'2023',
@@ -108,13 +117,17 @@ class DatabaseSeeder extends Seeder
         auto::create([
             'tipo_auto'=>2,
             'marca'=>2,
+            'nombre_auto'=>'XUV 300',
             'color'=>'Negro',
             'placa'=>'DGJK19',
             'anio'=>'2020',
             'foto'=>NULL,
         ]);
 
-        // arriendoauto
-
+        // cliente
+        cliente::create([
+            'rut'=>'11111111-1',
+            'nombre'=>'pepe tapia',
+        ]);
     }
 }

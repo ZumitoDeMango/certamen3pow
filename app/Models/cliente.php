@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class cliente extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'clientes';
     protected $primaryKey = 'rut';

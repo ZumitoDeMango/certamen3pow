@@ -20,7 +20,7 @@ return new class extends Migration
             //FK hacia marca auto
             $table->unsignedBigInteger('marca');
             $table->foreign('marca')->references('id')->on('marca')->onDelete('cascade');
-
+            $table->string('nombre_auto');
             $table->string('color');
             $table->string('placa');
             $table->string('anio');

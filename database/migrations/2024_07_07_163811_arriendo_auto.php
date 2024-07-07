@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('arriendo_auto', function (Blueprint $table) {
-            $table->unsignedInteger('id')->autoincrement();
+            $table->id();
 
             //FK arriendo hacia auto
             $table->unsignedBigInteger('auto');

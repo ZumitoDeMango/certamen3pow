@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\auto;
 use App\Models\marca;
 use App\Models\tipoauto;
+use App\Models\cliente;
+use App\Models\arriendoauto;
+use Carbon\Carbon;
 
 class CatalogoController extends Controller
 {
@@ -91,24 +94,26 @@ class CatalogoController extends Controller
     }
 
     // Método para procesar el arrendamiento de vehículos
-    public function arrendar(Request $request, $id)
+    public function storeArrendar(Request $request, $id)
     {
-        // Validación de datos
         $request->validate([
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date|after:fecha_inicio',
+            'rut_cliente' => 'required|exists:clientes,rut', 
         ]);
 
-        // Guardar el arriendo de auto
-        $arriendo = new ArriendoAuto();
-        $arriendo->auto = $id;
-        $arriendo->usuario = auth()->user()->id; // Asignar el usuario actualmente autenticado
-        $arriendo->fecha_inicio = $request->fecha_inicio;
-        $arriendo->fecha_fin = $request->fecha_fin;
-        // Opcional: Puedes asignar las fechas de entrega y devolución dependiendo de la lógica de tu aplicación
-        $arriendo->save();
+        $cliente = cliente::where('rut', $request->rut_cliente)->firstOrFail();
 
-        // Redireccionar con un mensaje de éxito
+        $fechaInicio = Carbon::parse($request->fecha_inicio);
+        $fechaEntrega = $fechaInicio->copy()->addHour();
+
+        $arriendo = new arriendoauto();
+        $arriendo->auto = $id;
+        $arriendo->rut_cliente = $cliente->rut; 
+        $arriendo->fecha_inicio = $fechaInicio;
+        $arriendo->fecha_fin = $request->fecha_fin;
+        $arriendo->fecha_entrega = $fechaEntrega;
+        $arriendo->save();
         return redirect()->route('catalogo.index')->with('success', 'El vehículo ha sido arrendado exitosamente.');
     }
 }
