@@ -29,29 +29,21 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <!-- Opción de menú para Home -->
+                    {{-- Botones de home, catalogo y usuarios --}}
                     <li class="nav-item {{ Route::current()->getName() === 'home.index' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('home.index') }}">Inicio</a>
                     </li>
-
-                    <!-- Opción de menú para Catálogo -->
-                    @if(Gate::allows('ver-catalogo'))
                     <li class="nav-item {{ Route::current()->getName() === 'catalogo.index' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('catalogo.index') }}">Catálogo</a>
                     </li>
-                    @endif
-
-                    <!-- Opción de menú para Usuarios -->
-                    @if(Gate::allows('ver-usuarios'))
                     <li class="nav-item {{ Route::current()->getName() === 'usuarios.admin' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('usuarios.admin') }}">Usuarios</a>
                     </li>
-                    @endif
                 </ul>
 
-                <!-- Botones de Iniciar Sesión y Registrarse -->
                 <ul class="navbar-nav ml-auto">
                     @guest
+                    <!-- Botones de login y register -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('usuarios.login') }}">Login</a>
                     </li>
@@ -59,11 +51,14 @@
                         <a class="nav-link" href="{{ route('usuarios.register') }}">Register</a>
                     </li>
                     @else
-                    <!-- Botón de Cerrar Sesión -->
+                    <!-- Boton de logout -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Config</a>
+                    </li>
                     <li class="nav-item">
                         <form action="{{ route('usuarios.logout') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-link nav-link">Cerrar Sesión</button>
+                            <button type="submit" class="btn btn-link nav-link">Logout</button>
                         </form>
                     </li>
                     @endguest

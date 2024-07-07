@@ -82,5 +82,33 @@ class CatalogoController extends Controller
 
         return redirect()->route('catalogo.admin')->with('success', 'Marca eliminada exitosamente.');
     }
+    
+    // Método para mostrar la vista de arrendamiento de vehículos
+    public function mostrarArrendar($id)
+    {
+        $auto = Auto::findOrFail($id);
+        return view('catalogo.arrendar', compact('auto'));
+    }
 
+    // Método para procesar el arrendamiento de vehículos
+    public function arrendar(Request $request, $id)
+    {
+        // Validación de datos
+        $request->validate([
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date|after:fecha_inicio',
+        ]);
+
+        // Guardar el arriendo de auto
+        $arriendo = new ArriendoAuto();
+        $arriendo->auto = $id;
+        $arriendo->usuario = auth()->user()->id; // Asignar el usuario actualmente autenticado
+        $arriendo->fecha_inicio = $request->fecha_inicio;
+        $arriendo->fecha_fin = $request->fecha_fin;
+        // Opcional: Puedes asignar las fechas de entrega y devolución dependiendo de la lógica de tu aplicación
+        $arriendo->save();
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('catalogo.index')->with('success', 'El vehículo ha sido arrendado exitosamente.');
+    }
 }

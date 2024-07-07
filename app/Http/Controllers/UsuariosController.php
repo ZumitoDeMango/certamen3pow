@@ -18,7 +18,7 @@ class UsuariosController extends Controller
         return view('usuarios.admin', compact('usuarios'));
     }
 
-    // Muestra la vista de inicio de sesión
+    // Muestra la vista de login
     public function login()
     {
         return view('usuarios.login');
@@ -40,7 +40,7 @@ class UsuariosController extends Controller
         ]);
     }
 
-    // Muestra la vista de registro
+    // Muestra la vista de register
     public function register()
     {
         return view('usuarios.register');
