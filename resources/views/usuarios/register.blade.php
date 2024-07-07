@@ -19,14 +19,11 @@
                             <label for="email">Correo Electrónico:</label>
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="tipo_rol">Rol de la Cuenta</label>
-                            <select id="tipo_rol" name="tipo_rol" class="form-control">
-                                <option value="0">Seleccione</option>
-                                @foreach($tipo_rol as $tipo_rol)
-                                <option value="{{$tipo_rol->id}}" @if(old('rol')==$tipo_rol->id) selected @endif>{{ $tipo_rol->nombre }}</option>
-                                @endforeach
-                            </select>
+                        <div class="form-group mb-3">
+                            <label for="tipo_rol">Rol dentro de la empresa:</label>
+                            <br>
+                            <label for="tipo_rol">1.Ejecutivo    2.Administrador</label>
+                            <input type="tipo_rol" class="form-control" id="tipo_rol" name="tipo_rol" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="password">Contraseña:</label>

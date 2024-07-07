@@ -23,10 +23,8 @@ class DatabaseSeeder extends Seeder
         // tipo de usuarios
         // 1 = Ejecutivo
         // 2 = admin
-        // 3 = cliente
         tiporol::create(['tipo' => 'ejecutivo']);
         tiporol::create(['tipo' => 'admin']);
-        tiporol::create(['tipo' => 'cliente']);
 
         // usuarios
         User::create([
@@ -40,12 +38,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'Admin123@email.com',
             'tipo_rol' => 2,
             'password' => Hash::make('admin123'),
-        ]);
-        User::create([
-            'name' => 'jose',
-            'email' => 'JoseJose@email.com',
-            'tipo_rol' => 3,
-            'password' => Hash::make('jose123'),
         ]);
 
         // marca

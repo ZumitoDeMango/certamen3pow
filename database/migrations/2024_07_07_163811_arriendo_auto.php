@@ -6,15 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('arriendo_auto', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('auto')->constrained('auto');
-            $table->foreignId('usuario')->constrained('users');
+            $table->unsignedInteger('id')->autoincrement();
+
+            //FK arriendo hacia auto
+            $table->unsignedBigInteger('auto');
+            $table->foreign('auto')->references('id')->on('auto')->onDelete('cascade');
+            //FK arriendo hacia cliente
+            $table->String('rut_cliente', 10);
+            $table->foreign('rut_cliente')->references('rut')->on('clientes')->onDelete('cascade');
+
             $table->date('fecha_inicio')->default(now());
             $table->date('fecha_fin');
             $table->date('fecha_entrega')->nullable();

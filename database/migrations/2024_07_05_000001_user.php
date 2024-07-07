@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->foreignId('tipo_rol')->constrained('tipo_rol');
+            //FK usuers hacia tipo_rol
+            $table->unsignedBigInteger('tipo_rol');
+            $table->foreign('tipo_rol')->references('id')->on('tipo_rol')->onDelete('cascade');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

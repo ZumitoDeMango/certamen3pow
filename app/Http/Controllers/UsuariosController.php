@@ -52,13 +52,16 @@ class UsuariosController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'tipo_rol'=>'required',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
+            'tipo_rol'=>$request->tipo_rol,
             'password' => Hash::make($request->password),
+            
         ]);
 
         $user->save();

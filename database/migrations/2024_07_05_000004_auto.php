@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('auto', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tipo_auto')->constrained('tipo_auto');
-            $table->foreignId('marca')->constrained('marca');
+            //FK hacia tipo auto
+            $table->unsignedBigInteger('tipo_auto');
+            $table->foreign('tipo_auto')->references('id')->on('tipo_auto')->onDelete('cascade');
+
+            //FK hacia marca auto
+            $table->unsignedBigInteger('marca');
+            $table->foreign('marca')->references('id')->on('marca')->onDelete('cascade');
+
             $table->string('color');
             $table->string('placa');
             $table->string('anio');
