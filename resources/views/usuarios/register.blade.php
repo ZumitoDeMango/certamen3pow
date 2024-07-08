@@ -19,11 +19,13 @@
                             <label for="email">Correo Electrónico:</label>
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="tipo_rol">Rol dentro de la empresa:</label>
-                            <br>
-                            <label for="tipo_rol">1.Ejecutivo    2.Administrador</label>
-                            <input type="tipo_rol" class="form-control" id="tipo_rol" name="tipo_rol" required>
+                        <div class="mb-3">
+                            <label for="tipo_rol" class="form-label">Tipo de Rol:</label>
+                            <select class="form-control" id="tipo_rol" name="tipo_rol" required>
+                                @foreach($roles as $rol)
+                                    <option value="{{ $rol->id }}">{{ $rol->tipo }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="password">Contraseña:</label>

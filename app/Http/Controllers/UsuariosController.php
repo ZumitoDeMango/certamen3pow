@@ -104,7 +104,8 @@ class UsuariosController extends Controller
     /* Muestra la vista de register */
     public function register()
     {
-        return view('usuarios.register');
+        $roles = TipoRol::all();
+        return view('usuarios.register', compact('roles'));
     }
 
     /* Maneja el registro de nuevos usuarios */
