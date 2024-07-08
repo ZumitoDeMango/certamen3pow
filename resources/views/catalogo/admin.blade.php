@@ -3,6 +3,53 @@
 @section('contenido-principal')
 
 <div class="container">
+    <div class="row">
+        <h2>Gestión de Autos</h2>
+        {{-- Tabla para eliminar o editar autos --}}
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo de Auto</th>
+                                <th>Marca</th>
+                                <th>Nombre Vehiculo</th>
+                                <th>Color</th>
+                                <th>Placa</th>
+                                <th>Año</th>
+                                <th>Estado</th>
+                                <th colspan="3">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($autos as $num=>$auto)
+                            <tr>
+                                <td>{{$num+1}}</td>
+                                <td>{{$auto->tipoauto->tipo_auto}}</td>
+                                <td>{{$auto->Marca->nombre_marca}}</td>
+                                <td>{{$auto->nombre_auto}}</td>
+                                <td>{{$auto->color}}</td>
+                                <td>{{$auto->placa}}</td>
+                                <td>{{$auto->anio}}</td>
+                                <td></td>
+                                <td>
+                                    <!-- Botones para editar y borrar -->
+                                    <a href="" class="btn btn-warning btn-sm">Editar</a>
+                                    <form action="" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     <div class="row mt-5">
         <h2>Gestión de Autos</h2>
         <!-- Formulario para agregar nuevo auto -->
@@ -56,6 +103,8 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <h2>Gestión de Marcas</h2>
     <div class="row mt-5">
         <h2>Gestión de Marcas</h2>
         <!-- Tabla para mostrar marcas -->
