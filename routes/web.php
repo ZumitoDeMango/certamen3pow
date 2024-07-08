@@ -34,6 +34,8 @@ Route::get('/catalogo/admin', [CatalogoController::class, 'admin'])->name('catal
 Route::post('/catalogo/admin/auto', [CatalogoController::class, 'storeAuto'])->name('catalogo.storeAuto')->middleware('auth');
 Route::post('/catalogo/admin/marca', [CatalogoController::class, 'storeMarca'])->name('catalogo.storeMarca')->middleware('auth');
 Route::post('/catalogo/admin/marca/{id}/delete', [CatalogoController::class, 'deleteMarca'])->name('catalogo.deleteMarca')->middleware('auth');
+Route::get('/catalogo/devolver', [CatalogoController::class, 'mostrarDevolver'])->name('catalogo.mostrarDevolver');
+Route::post('/catalogo/devolver-auto', [CatalogoController::class, 'devolverAuto'])->name('catalogo.devolverAuto');
 
 /* rutas para mostrar el modal de arrendar */
 Route::get('/catalogo/arrendar/{id}', [CatalogoController::class, 'mostrarArrendar'])->name('catalogo.arrendar');

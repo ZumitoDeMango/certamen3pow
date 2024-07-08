@@ -121,4 +121,24 @@ class CatalogoController extends Controller
 
         return redirect()->route('catalogo.index')->with('success', 'El vehículo ha sido arrendado exitosamente.');
     }
+
+    public function mostrarDevolver()
+    {
+        // Obtener solo autos disponibles para devolución
+        $autos = Auto::where('estado', true)->get(); 
+        return view('catalogo.devolver', compact('autos'));
+    }
+
+    public function devolverAuto(Request $request)
+    {
+        $request->validate([
+            'auto_id' => 'required|exists:autos,id',
+            'fecha_devolucion' => 'required|date',
+        ]);
+
+        // Procesar la devolución del auto (actualizar en la base de datos, etc.)
+        // Aquí deberías realizar la lógica necesaria para registrar la devolución del auto
+
+        return redirect()->route('catalogo.index')->with('success', 'Auto devuelto correctamente.');
+    }
 }
