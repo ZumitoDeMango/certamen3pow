@@ -27,3 +27,4 @@ class MiddlewareAdmin
         return $next($request);
     }
 }
+

@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Arrendar Vehículo {{$auto->marca}} {{$auto->nombre_auto}}</h5>
+            <h5 class="card-title">Arrendar Vehículo {{$auto->Marca->nombre_marca}} {{$auto->nombre_auto}}</h5>
         </div>
         <div class="card-body">
             <form action="{{ route('catalogo.storeArrendar', ['id' => $auto->id]) }}" method="POST">
@@ -24,6 +24,12 @@
                 <button type="submit" class="btn btn-primary">Confirmar Arriendo</button>
             </form>
         </div>
+    </div>
+    <div class="card">
+        <form action="{{ route('catalogo.mostrarDevolver') }}" method="get">
+            @csrf
+            <button type="submit">Devolver Auto</button>
+        </form>
     </div>
 </div>
 @endsection

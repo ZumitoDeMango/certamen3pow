@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class Middleware
 {
@@ -17,8 +17,18 @@ class Middleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            return redirect()->route('home.index');
+            return redirect()->route('home.index')->withErrors(['login' => 'Por favor, inicie sesión antes de acceder a esta ruta.']);
         }
+
+        if (Auth::user()->rol_id == 1) {
+            return $next($request);
+        }
+
+        if (Auth::user()->rol_id != 2) {
+            return redirect()->route('home.index')->withErrors(['login' => 'No tiene permisos para acceder a esta ruta.']);
+        }
+
         return $next($request);
     }
 }
+
