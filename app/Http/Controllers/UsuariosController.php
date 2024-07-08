@@ -12,13 +12,13 @@ use App\Http\Requests\UsuariosRequest;
 
 class UsuariosController extends Controller
 {
-    // Método para mostrar el formulario de cambio de contraseña
+    /* Método para mostrar el formulario de cambio de contraseña */
     public function config()
     {
         return view('usuarios.config');
     }
 
-    // Método para actualizar la contraseña del usuario
+    /* Método para actualizar la contraseña del usuario */
     public function updatePassword(Request $request)
     {
         $request->validate([
@@ -41,20 +41,28 @@ class UsuariosController extends Controller
         return redirect()->route('home.index')->with('success', 'Contraseña actualizada correctamente.');
     }
 
-    // Muestra la vista de administración de usuarios
+    /* Muestra la vista de administración de usuarios */
     public function admin()
     {
         $usuarios = User::with('tiporol')->get();
         return view('usuarios.admin', compact('usuarios'));
     }
 
-    // Muestra la vista de login
+    /* Borrar usuario */
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('usuarios.admin');
+    }
+
+    /* Muestra la vista de login */
     public function login()
     {
         return view('usuarios.login');
     }
 
-    // Maneja la autenticación de usuarios
+    /* Maneja la autenticación de usuarios */
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -70,13 +78,13 @@ class UsuariosController extends Controller
         ]);
     }
 
-    // Muestra la vista de register
+    /* Muestra la vista de register */
     public function register()
     {
         return view('usuarios.register');
     }
 
-    // Maneja el registro de nuevos usuarios
+    /* Maneja el registro de nuevos usuarios */
     public function store(Request $request)
     {
         $request->validate([
@@ -100,7 +108,7 @@ class UsuariosController extends Controller
         return redirect()->route('home.index');
     }
 
-    // Maneja el cierre de sesión de usuarios
+    /* Maneja el cierre de sesión de usuarios */
     public function logout(Request $request)
     {
         Auth::logout();

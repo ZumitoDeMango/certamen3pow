@@ -27,14 +27,13 @@
                                 <td class="align-middle">{{$user->email}}</td>
                                 <td class="align-middle">{{$user->tiporol->tipo}}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-danger pb-0" data-bs-toggle="modal" data-bs-target="">
-                                        <span class="material-icons">delete</span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-warning pb-0 text-white" data-bs-toggle="tooltip" data-bs-title="">
-                                        <span class="material-icons">edit</span>
-                                    </a>
+                                    <!-- Botones para editar y borrar -->
+                                    <a href="" class="btn btn-warning btn-sm">Editar</a>
+                                    <form action="{{ route('usuarios.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
