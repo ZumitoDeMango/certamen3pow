@@ -1,13 +1,13 @@
 @extends('templates.master')
 
 @section('contenido-principal')
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-12">
                 <h1 class="text-center">Bienvenido al panel de administración</h1>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col mt-2">
                     <h3>Gestion de usuarios</h3>
                     <table class="table table-bordered table-striped table-hover">
                         <thead class="table-dark">
@@ -20,12 +20,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($User as $num=>$usuarios)
+                            @foreach ($usuarios as $num=>$user)
                             <tr>
                                 <td class="align-middle">{{$num+1}}</td>
-                                <td class="align-middle">{{$usuarios->name}}</td>
-                                <td class="align-middle">{{$usuarios->email}}</td>
-                                <td class="align-middle">{{$usuarios->tiporol->tipo}}</td>
+                                <td class="align-middle">{{$user->name}}</td>
+                                <td class="align-middle">{{$user->email}}</td>
+                                <td class="align-middle">{{$user->tipo_rol}}</td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-danger pb-0" data-bs-toggle="modal" data-bs-target="">
                                         <span class="material-icons">delete</span>
@@ -37,7 +37,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
