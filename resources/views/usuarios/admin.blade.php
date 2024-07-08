@@ -32,7 +32,7 @@
                                     <form action="{{ route('usuarios.destroy', $user->id) }}" method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de borrar este usuario?')" {{ $user->id == Auth::user()->id ? 'disabled' : '' }}>Borrar</button>
                                     </form>
                                 </td>
                             </tr>
