@@ -26,8 +26,7 @@
                     <tr>
                         <td>{{$num+1}}</td>
                         <td>{{$auto->tipoauto->tipo_auto}}</td> {{--a saber porque no lo pesca {{$auto->tipo_auto->tipo_auto}}--}}
-                        <td></td>
-                        {{-- <td>{{$auto->marca}}</td> --}}
+                        <td>{{$auto->Marca->nombre_marca}}</td>
                         <td>{{$auto->nombre_auto}}</td>
                         <td>{{$auto->color}}</td>
                         <td>{{$auto->placa}}</td>
