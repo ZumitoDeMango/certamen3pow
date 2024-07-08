@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->String('rut', 10)->primary();
             $table->String('nombre', 50);
-            $table->softDeletes();
         });
     }
 

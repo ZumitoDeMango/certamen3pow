@@ -5,7 +5,6 @@
 <div class="container mt-5">
     <h2>Autos Disponibles para Arrendar</h2>
     <div class="row">
-        <!-- HTML para mostrar la tabla de autos -->
         <div class="container mt-5">
             <table class="table table-striped">
                 <thead>
@@ -23,7 +22,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Ejemplo de fila -->
                     @foreach($autos as $num=>$auto)
                     <tr>
                         <td>{{$num+1}}</td>

@@ -13,18 +13,19 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>id</th>
-                                <th>name</th>
+                                <th>nombre</th>
                                 <th>email</th>
                                 <th>tipo rol</th>
                                 <th colspan="2">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {{-- @foreach ($User as $num=>$usuarios)
                             <tr>
-                                <td class="align-middle"></td>
-                                <td class="align-middle"></td>
-                                <td class="align-middle"></td>
-                                <td class="align-middle"></td>
+                                <td class="align-middle">{{$num+1}}</td>
+                                <td class="align-middle">{{$usuarios->name}}</td>
+                                <td class="align-middle">{{$usuarios->email}}</td>
+                                <td class="align-middle">{{$usuarios->tiporol->tipo}}</td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-danger pb-0" data-bs-toggle="modal" data-bs-target="">
                                         <span class="material-icons">delete</span>
@@ -36,6 +37,7 @@
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
