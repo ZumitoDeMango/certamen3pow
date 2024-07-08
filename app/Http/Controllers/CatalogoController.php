@@ -24,33 +24,33 @@ class CatalogoController extends Controller
     {
         $autos = Auto::all();
         $marcas = Marca::whereNull('deleted_at')->get();
-        $tipos = TipoAuto::all();
-        return view('catalogo.admin', compact('autos', 'marcas', 'tipos'));
+        $tiposAuto = TipoAuto::all();
+        return view('catalogo.admin', compact('autos', 'marcas', 'tiposAuto'));
     }
 
     // Maneja la creación de un nuevo auto
     public function storeAuto(Request $request)
     {
         $request->validate([
-            'tipo_auto' => 'required|exists:tipos_auto,id',
+            'tipo_auto' => 'required|exists:tipo_auto,id',
             'marca' => 'required|string|max:255',
             'color' => 'required|string|max:255',
-            'placa' => 'required|string|max:255|unique:autos',
+            'placa' => 'required|string|max:255|unique:auto',
             'anio' => 'required|integer',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'estado' => 'required|string|max:255',
         ]);
-
-        $fotoPath = $request->file('foto')->store('fotos', 'public');
+        $fotoPath = $request->file('foto')->store('public/autos');
 
         $auto = new Auto([
             'tipo_auto' => $request->tipo_auto,
             'marca' => $request->marca,
+            'nombre_auto'=>$request->nombre_auto,
             'color' => $request->color,
             'placa' => $request->placa,
             'anio' => $request->anio,
             'foto' => $fotoPath,
-            'estado' => $request->estado,
+            'estado' => false,
         ]);
 
         $auto->save();

@@ -5,42 +5,50 @@
 <div class="container">
     <h2>Gestión de Autos</h2>
     <div class="row">
-        <!-- Ejemplo de Card de Auto -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img class="card-img-top" src="ruta/a/la/foto.jpg" alt="Foto del Auto">
-                <div class="card-body">
-                    <h5 class="card-title">Marca y Modelo</h5>
-                    <p class="card-text">Tipo: Tipo de Auto</p>
-                    <p class="card-text">Color: Color del Auto</p>
-                    <p class="card-text">Año: Año del Auto</p>
-                    <a href="#" class="btn btn-primary">Editar</a>
-                    <a href="#" class="btn btn-danger">Eliminar</a>
-                </div>
-            </div>
-        </div>
         <!-- Formulario para agregar nuevo auto -->
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Agregar Nuevo Auto</h5>
-                    <form action="ruta/para/agregar/auto" method="POST">
-                        <!-- Campos del formulario -->
+                    <form action="{{ route('catalogo.storeAuto') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <!-- Selector de Tipo de Auto -->
+                        <div class="form-group">
+                            <label for="tipo_auto">Tipo de Auto:</label>
+                            <select class="form-control" id="tipo_auto" name="tipo_auto" required>
+                                @foreach($tiposAuto as $tipos)
+                                    <option value="{{ $tipos->id }}">{{ $tipos->tipo_auto }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <!-- Selector de Marca -->
                         <div class="form-group">
                             <label for="marca">Marca:</label>
-                            <input type="text" class="form-control" id="marca" name="marca" required>
+                            <select class="form-control" id="marca" name="marca" required>
+                                @foreach($marcas as $marca)
+                                    <option value="{{ $marca->id }}">{{ $marca->nombre_marca }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="modelo">Modelo:</label>
-                            <input type="text" class="form-control" id="modelo" name="modelo" required>
+                            <label for="nombre_auto">Nombre Auto:</label>
+                            <input type="text" class="form-control" id="nombre_auto" name="nombre_auto" required>
                         </div>
                         <div class="form-group">
                             <label for="color">Color:</label>
                             <input type="text" class="form-control" id="color" name="color" required>
                         </div>
                         <div class="form-group">
+                            <label for="placa">Patente:</label>
+                            <input type="text" class="form-control" id="placa" name="placa" required>
+                        </div>
+                        <div class="form-group">
                             <label for="anio">Año:</label>
-                            <input type="number" class="form-control" id="anio" name="anio" required>
+                            <input type="text" class="form-control" id="anio" name="anio" required>
+                        </div>
+                        <div class="col-12 my-2">
+                            <label for="foto" class="form-label">Foto del Vehiculo</label>
+                            <input type="file" class="form-control-file" id="foto" name="foto">
                         </div>
                         <button type="submit" class="btn btn-success">Agregar Auto</button>
                     </form>
