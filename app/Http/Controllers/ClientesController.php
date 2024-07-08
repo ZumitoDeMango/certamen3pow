@@ -30,6 +30,7 @@ class ClientesController extends Controller
         return view('clientes.edit', compact('cliente'));
     }
 
+    /* Actualizar cliente */
     public function update(Request $request, $rut)
     {
         $request->validate([
@@ -41,6 +42,7 @@ class ClientesController extends Controller
         return redirect()->route('clientes.index')->with('success', 'Cliente actualizado exitosamente.');
     }
 
+    /* Borrar cliente */
     public function destroy($rut)
     {
         $cliente = Cliente::findOrFail($rut);

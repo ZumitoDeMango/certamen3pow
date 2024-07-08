@@ -20,7 +20,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($User as $num=>$usuarios)
+                            @foreach ($usuarios as $num=>$usuarios)
                             <tr>
                                 <td class="align-middle">{{$num+1}}</td>
                                 <td class="align-middle">{{$usuarios->name}}</td>
@@ -37,7 +37,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

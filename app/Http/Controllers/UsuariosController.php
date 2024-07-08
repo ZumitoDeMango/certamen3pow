@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\tiporol;
 use App\Http\Requests\UsuariosRequest;
 
 
@@ -43,7 +44,10 @@ class UsuariosController extends Controller
     // Muestra la vista de administración de usuarios
     public function admin()
     {
-        $usuarios = User::all();
+        /* $usuarios = User::all();
+        return view('usuarios.admin', compact('usuarios')); */
+
+        $usuarios = User::with('tiporol')->get();
         return view('usuarios.admin', compact('usuarios'));
     }
 
@@ -90,7 +94,6 @@ class UsuariosController extends Controller
             'email' => $request->email,
             'tipo_rol'=>$request->tipo_rol,
             'password' => Hash::make($request->password),
-            
         ]);
 
         $user->save();

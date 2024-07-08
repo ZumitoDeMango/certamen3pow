@@ -37,4 +37,10 @@ Route::get('/catalogo/arrendar/{id}', [CatalogoController::class, 'mostrarArrend
 Route::post('/catalogo/arrendar/{id}', [CatalogoController::class, 'storeArrendar'])->name('catalogo.storeArrendar'); 
 
 /* rutas de clientes */
-Route::resource('/clientes', ClientesController::class);
+// Rutas para gestionar clientes
+Route::get('clientes', [ClientesController::class, 'index'])->name('clientes.index');
+Route::post('clientes', [ClientesController::class, 'store'])->name('clientes.store');
+Route::get('clientes/create', [ClientesController::class, 'create'])->name('clientes.create');
+Route::get('clientes/{rut}/edit', [ClientesController::class, 'edit'])->name('clientes.edit');
+Route::put('clientes/{rut}', [ClientesController::class, 'update'])->name('clientes.update');
+Route::delete('clientes/{rut}', [ClientesController::class, 'destroy'])->name('clientes.destroy');

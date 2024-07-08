@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
     public function tiporol()    
     {
-        return $this->belongsTo(tiporol::class);
+        return $this->belongsTo(TipoRol::class, 'tipo_rol');
     }
 
 }
