@@ -11,6 +11,9 @@ class marca extends Model
     use HasFactory;
     protected $table = 'marca';
     public $timestamps = false;
+    protected $fillable = [
+        'nombre_marca',
+    ];
 
     public function auto() : HasMany
     {
