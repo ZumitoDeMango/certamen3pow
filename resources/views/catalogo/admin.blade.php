@@ -50,6 +50,8 @@
                 </div>
             </div>
         </div>
+    <div class="row mt-5">
+        <h2>Gestión de Autos</h2>
         <!-- Formulario para agregar nuevo auto -->
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card">
@@ -103,35 +105,40 @@
     </div>
     <div class="row">
         <h2>Gestión de Marcas</h2>
+    <div class="row mt-5">
+        <h2>Gestión de Marcas</h2>
         <!-- Tabla para mostrar marcas -->
-        <div class="col-lg-6">
-            <h3>Marcas de Autos</h3>
+        <div class="col-lg-6 mt-2">
+            <h3>Lista de Marcas</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Acciones</th>
+                        <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($marcas as $marca)
                     <tr>
-                        <td>1</td>
-                        <td>Ford</td>
+                        <td>{{$marca->id}}</td>
+                        <td>{{$marca->nombre_marca}}</td>
                         <td>
                             <button class="btn btn-sm btn-danger">Eliminar</button>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
         <!-- Formulario para agregar nueva marca -->
-        <div class="col-lg-6">
+        <div class="col-lg-6 mt-2">
             <h3>Agregar Nueva Marca</h3>
-            <form action="" method="POST">
+            <form action="{{route('catalogo.storeMarca')}}" method="POST">
+                @csrf
                 <div class="form-group">
-                    <label for="nombre">Nombre de la Marca:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    <label for="nombre_marca">Nombre de la Marca:</label>
+                    <input type="text" class="form-control" id="nombre_marca" name="nombre_marca" required>
                 </div>
                 <button type="submit" class="btn btn-success">Agregar Marca</button>
             </form>

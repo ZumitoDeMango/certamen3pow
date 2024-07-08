@@ -62,11 +62,11 @@ class CatalogoController extends Controller
     public function storeMarca(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255|unique:marcas',
+            'nombre_marca' => 'required|string|max:255|unique:marca',
         ]);
 
         $marca = new Marca([
-            'nombre' => $request->nombre,
+            'nombre_marca' => $request->nombre_marca,
         ]);
 
         $marca->save();
