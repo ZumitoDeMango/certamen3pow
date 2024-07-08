@@ -28,7 +28,7 @@
                                 <td class="align-middle">{{$user->tiporol->tipo}}</td>
                                 <td>
                                     <!-- Botones para editar y borrar -->
-                                    <a href="" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="{{ route('usuarios.edit', $user->id) }}" class="btn btn-warning btn-sm">Editar</a>
                                     <form action="{{ route('usuarios.destroy', $user->id) }}" method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')

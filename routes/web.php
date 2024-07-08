@@ -25,6 +25,7 @@ Route::post('/logout', [UsuariosController::class, 'logout'])->name('usuarios.lo
 Route::get('/config', [UsuariosController::class, 'config'])->name('usuarios.config');
 Route::put('/config/update-password', [UsuariosController::class, 'updatePassword'])->name('usuarios.updatePassword');
 Route::get('/admin/edit/{user}', [UsuariosController::class, 'edit'])->name('usuarios.edit');
+Route::put('/admin/{user}', [UsuariosController::class, 'update'])->name('usuarios.update');
 Route::delete('/admin/{user}',[UsuariosController::class, 'destroy'])->name('usuarios.destroy');
 
 /* rutas de catalogo */
@@ -39,7 +40,6 @@ Route::get('/catalogo/arrendar/{id}', [CatalogoController::class, 'mostrarArrend
 Route::post('/catalogo/arrendar/{id}', [CatalogoController::class, 'storeArrendar'])->name('catalogo.storeArrendar'); 
 
 /* rutas de clientes */
-// Rutas para gestionar clientes
 Route::get('clientes', [ClientesController::class, 'index'])->name('clientes.index');
 Route::post('clientes', [ClientesController::class, 'store'])->name('clientes.store');
 Route::get('clientes/create', [ClientesController::class, 'create'])->name('clientes.create');

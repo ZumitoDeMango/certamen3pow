@@ -56,6 +56,29 @@ class UsuariosController extends Controller
         return redirect()->route('usuarios.admin');
     }
 
+    /* Editar usuario */
+    public function edit($id)
+    {
+        $usuario = User::findOrFail($id);
+        $roles = TipoRol::all();
+        return view('usuarios.edit', compact('usuario', 'roles'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'tipo_rol' => 'required',
+        ]);
+
+        $usuario = User::findOrFail($id);
+        $usuario->update($request->all());
+
+        return redirect()->route('usuarios.admin')->with('success', 'Usuario actualizado exitosamente.');
+    }
+
+
     /* Muestra la vista de login */
     public function login()
     {
