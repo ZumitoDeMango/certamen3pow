@@ -39,6 +39,9 @@
                     <li class="nav-item {{ Route::current()->getName() === 'usuarios.admin' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('usuarios.admin') }}">Usuarios</a>
                     </li>
+                    <li class="nav-item {{ Route::current()->getName() === 'clientes.index' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
