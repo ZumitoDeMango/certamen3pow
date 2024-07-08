@@ -44,9 +44,6 @@ class UsuariosController extends Controller
     // Muestra la vista de administración de usuarios
     public function admin()
     {
-        /* $usuarios = User::all();
-        return view('usuarios.admin', compact('usuarios')); */
-
         $usuarios = User::with('tiporol')->get();
         return view('usuarios.admin', compact('usuarios'));
     }
