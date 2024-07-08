@@ -24,6 +24,7 @@ Route::post('/register', [UsuariosController::class, 'store'])->name('usuarios.s
 Route::post('/logout', [UsuariosController::class, 'logout'])->name('usuarios.logout')->middleware('auth');
 Route::get('/config', [UsuariosController::class, 'config'])->name('usuarios.config');
 Route::put('/config/update-password', [UsuariosController::class, 'updatePassword'])->name('usuarios.updatePassword');
+Route::get('/admin/edit/{user}', [UsuariosController::class, 'edit'])->name('usuarios.edit');
 Route::delete('/admin/{user}',[UsuariosController::class, 'destroy'])->name('usuarios.destroy');
 
 /* rutas de catalogo */
