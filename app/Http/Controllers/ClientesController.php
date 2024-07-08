@@ -39,7 +39,7 @@ class ClientesController extends Controller
 
         $cliente = Cliente::findOrFail($rut);
         $cliente->update($request->all());
-        return redirect()->route('clientes.index')->with('success', 'Cliente actualizado exitosamente.');
+        return redirect()->route('clientes.index');
     }
 
     /* Borrar cliente */
@@ -47,6 +47,6 @@ class ClientesController extends Controller
     {
         $cliente = Cliente::findOrFail($rut);
         $cliente->delete();
-        return redirect()->route('clientes.index')->with('success', 'Cliente borrado exitosamente.');
+        return redirect()->route('clientes.index');
     }
 }

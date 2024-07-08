@@ -13,6 +13,7 @@ class cliente extends Model
     protected $table = 'clientes';
     public $timestamps = false;
     protected $primaryKey = 'rut';
+    protected $keyType = 'string';
 
     protected $fillable = [
         'rut',
